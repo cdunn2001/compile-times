@@ -17,19 +17,19 @@ def do(args):
     return end - start
 
 langs = [
-    ("VC++", "cpp", ["cl.exe", "/nologo", "/Od"], False),
-    ("Clang", "cpp", ["clang++.exe", "-O0"], False),
-    ("D", "d", ["dmd.exe"], False),
-    ("Go", "go", ["go.exe", "build", "-gcflags", '-N -l'], False),
-    ("Pascal", "pas", ["fpc.exe", "-v0", "-O-"], False),
-    ("Rust", "rs", ["rustc.exe", "-C", "opt-level=0"], False),
+    #("VC++", "cpp", ["cl.exe", "/nologo", "/Od"], False),
+    ("Clang", "cpp", ["clang++", "-O0"], False),
+    ("D", "d", ["dmd"], False),
+    ("Go", "go", ["go", "build", "-gcflags", '-N -l'], False),
+    #("Pascal", "pas", ["fpc.exe", "-v0", "-O-"], False),
+    ("Rust", "rs", ["rustc", "-C", "opt-level=0"], False),
 
-    ("VC++ (opt)", "cpp", ["cl.exe", "/nologo", "/O2"], True),
-    ("Clang (opt)", "cpp", ["clang++.exe", "-O2"], True),
-    ("D (opt)", "d", ["dmd.exe", "-O"], True),
-    ("Go (opt)", "go", ["go.exe", "build"], True),
-    ("Pascal (opt)", "pas", ["fpc.exe", "-v0", "-O2"], True),
-    ("Rust (opt)", "rs", ["rustc.exe", "-C", "opt-level=2"], True),
+    #("VC++ (opt)", "cpp", ["cl.exe", "/nologo", "/O2"], True),
+    ("Clang (opt)", "cpp", ["clang++", "-O2"], True),
+    ("D (opt)", "d", ["dmd", "-O"], True),
+    ("Go (opt)", "go", ["go", "build"], True),
+    #("Pascal (opt)", "pas", ["fpc.exe", "-v0", "-O2"], True),
+    ("Rust (opt)", "rs", ["rustc", "-C", "opt-level=2"], True),
 ]
 
 num_seeds = 1
@@ -47,7 +47,7 @@ for i in range(n):
     num_funcs = n_step * (i+1)
     print "Generate code..."
     for seed in range(num_seeds):
-        do(["c:\python27\python.exe", "..\cogen.py",
+        do(["python2.7", "./cogen.py",
             str(seed), str(num_funcs)])
 
     row = [num_funcs]

@@ -582,7 +582,7 @@ langs = [
     CppLang(),
     DLang(),
     GoLang(),
-    PascalLang(),
+    #PascalLang(),
     RustLang(),
 ]
 
