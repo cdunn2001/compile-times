@@ -329,6 +329,17 @@ class CppLang(Lang):
         self.write_expr(f, statement.expr)
         f.write(');\n')
 
+class CLang(CppLang):
+
+    ext = 'c'
+
+    def write_program(self, f, program):
+        f.write('#include <stdio.h>\n\n')
+        for fun_decl in program.functions:
+            self.write_fun_decl(f, fun_decl)
+            f.write('\n')
+        self.write_fun_decl(f, program.main, main=True)
+
 class DLang(Lang):
 
     ext = 'd'
@@ -580,6 +591,7 @@ p = c.random_program(
 
 langs = [
     CppLang(),
+    CLang(),
     DLang(),
     GoLang(),
     #PascalLang(),
