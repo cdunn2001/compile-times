@@ -19,14 +19,14 @@ def do(args):
 langs = [
     #("VC++", "cpp", ["cl.exe", "/nologo", "/Od"], False),
     ("Clang", "cpp", ["clang++", "-O0"], False),
-    ("D", "d", ["dmd"], False),
+    #("D", "d", ["dmd"], False),
     ("Go", "go", ["go", "build", "-gcflags", '-N -l'], False),
     #("Pascal", "pas", ["fpc.exe", "-v0", "-O-"], False),
     ("Rust", "rs", ["rustc", "-C", "opt-level=0"], False),
 
     #("VC++ (opt)", "cpp", ["cl.exe", "/nologo", "/O2"], True),
     ("Clang (opt)", "cpp", ["clang++", "-O2"], True),
-    ("D (opt)", "d", ["dmd", "-O"], True),
+    #("D (opt)", "d", ["dmd", "-O"], True),
     ("Go (opt)", "go", ["go", "build"], True),
     #("Pascal (opt)", "pas", ["fpc.exe", "-v0", "-O2"], True),
     ("Rust (opt)", "rs", ["rustc", "-C", "opt-level=2"], True),
