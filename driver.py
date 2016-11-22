@@ -25,13 +25,13 @@ langs = [
     #("Pascal", "pas", ["fpc.exe", "-v0", "-O-"], False),
     ("Rust", "rs", ["rustc", "-C", "opt-level=0"], False),
 
-    #("VC++ (opt)", "cpp", ["cl.exe", "/nologo", "/O2"], True),
-    ("Clang++ (opt)", "cpp", ["clang++", "-O2"], True),
-    ("Clang (opt)", "c", ["clang", "-O2"], True),
-    #("D (opt)", "d", ["dmd", "-O"], True),
-    ("Go (opt)", "go", ["go", "build"], True),
-    #("Pascal (opt)", "pas", ["fpc.exe", "-v0", "-O2"], True),
-    ("Rust (opt)", "rs", ["rustc", "-C", "opt-level=2"], True),
+    ##("VC++ (opt)", "cpp", ["cl.exe", "/nologo", "/O2"], True),
+    #("Clang++ (opt)", "cpp", ["clang++", "-O2"], True),
+    #("Clang (opt)", "c", ["clang", "-O2"], True),
+    ##("D (opt)", "d", ["dmd", "-O"], True),
+    #("Go (opt)", "go", ["go", "build"], True),
+    ##("Pascal (opt)", "pas", ["fpc.exe", "-v0", "-O2"], True),
+    #("Rust (opt)", "rs", ["rustc", "-C", "opt-level=2"], True),
 ]
 
 num_seeds = 1
