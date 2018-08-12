@@ -11,6 +11,7 @@ import timeit
 import subprocess
 
 def do(args):
+    print("do {}".format(args))
     start = timeit.default_timer()
     subprocess.call(args)
     end = timeit.default_timer()
@@ -18,9 +19,10 @@ def do(args):
 
 langs = [
     #("VC++", "cpp", ["cl.exe", "/nologo", "/Od"], False),
+    ("Nim", "nim", ["nim", "c", "--opt:none", "--checks:off"], False),
     ("Clang++", "cpp", ["clang++", "-O0"], False),
     ("Clang", "c", ["clang", "-O0"], False),
-    #("D", "d", ["dmd"], False),
+    ("D", "d", ["dmd"], False),
     ("Go", "go", ["go", "build", "-gcflags", '-N -l'], False),
     #("Pascal", "pas", ["fpc.exe", "-v0", "-O-"], False),
     ("Rust", "rs", ["rustc", "-C", "opt-level=0"], False),
@@ -35,6 +37,7 @@ langs = [
 ]
 
 num_seeds = 1
+n0 = 0
 n = 10
 n_step = 1000
 
@@ -45,9 +48,10 @@ opt_levels = [
 
 results = []
 
-for i in range(n):
+print "n={}, n_step={}".format(n, n_step)
+for i in range(n0, n):
     num_funcs = n_step * (i+1)
-    print "Generate code..."
+    print "Generate code: i={}, num_funcs={}...".format(i, num_funcs)
     for seed in range(num_seeds):
         do(["python2.7", "./cogen.py",
             str(seed), str(num_funcs)])
