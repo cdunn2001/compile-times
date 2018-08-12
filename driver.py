@@ -25,22 +25,22 @@ langs = [
     ("D", "d", ["dmd"], False),
     ("Go", "go", ["go", "build", "-gcflags", '-N -l'], False),
     #("Pascal", "pas", ["fpc.exe", "-v0", "-O-"], False),
-    ("Rust", "rs", ["rustc", "-C", "opt-level=0"], False),
+    #("Rust", "rs", ["rustc", "-C", "opt-level=0"], False),
 
     ##("VC++ (opt)", "cpp", ["cl.exe", "/nologo", "/O2"], True),
     ("Nim (opt)", "nim", ["nim", "c", "-d:release"], False),
     ("Clang++ (opt)", "cpp", ["clang++", "-O2"], True),
     ("Clang (opt)", "c", ["clang", "-O2"], True),
-    #("D (opt)", "d", ["dmd", "-O"], True),
+    ("D (opt)", "d", ["dmd", "-O"], True),
     ("Go (opt)", "go", ["go", "build"], True),
     ##("Pascal (opt)", "pas", ["fpc.exe", "-v0", "-O2"], True),
-    ("Rust (opt)", "rs", ["rustc", "-C", "opt-level=2"], True),
+    #("Rust (opt)", "rs", ["rustc", "-C", "opt-level=2"], True),
 ]
 
 num_seeds = 1
 n0 = 0
-n = 10
-n_step = 1000
+n = 1
+n_step = 10000
 
 opt_levels = [
     False,
