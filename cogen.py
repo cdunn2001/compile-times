@@ -273,6 +273,70 @@ class Lang(object):
     def write_fun_call(self, f, expr, needs_parens):
         f.write("%s()" % expr.name)
 
+class NimLang(Lang):
+
+    ext = 'nim'
+
+    type_names = {
+        'int': 'int',
+    }
+
+    operators = {
+        '&': 'and',
+        '|': 'or',
+        '^': 'xor',
+    }
+
+    def write_program(self, f, program):
+        f.write('# no nim imports needed here\n\n')
+        for fun_decl in program.functions:
+            self.write_fun_decl(f, fun_decl)
+            f.write('\n')
+        self.write_fun_decl(f, program.main, main=True)
+        f.write('main()\n')
+
+    def write_fun_decl(self, f, fun_decl, main=False):
+        if fun_decl.return_type is None:
+            optional_result = ''
+        else:
+            type_name = self.type_names[fun_decl.return_type]
+            optional_result = ':%s' % type_name
+        fun_name = 'main' if main else fun_decl.name
+        f.write('proc {fun_name}(){optional_result} =\n'.format(**locals()))
+        #f.write('%s %s() {\n' % (optional_result, fun_name))
+        self.indent += 1
+        for statement in fun_decl.statements:
+            self.write_statement(f, statement)
+        self.indent -= 1
+        f.write('# end func\n')
+
+    def write_var_decl(self, f, var_decl):
+        self.write_indent(f)
+        f.write('var ')
+        self.write_lval(f, var_decl.name)
+        f.write(':int = ')
+        self.write_expr(f, var_decl.expr)
+        f.write('\n')
+
+    def write_assignment(self, f, assignment):
+        self.write_indent(f)
+        self.write_lval(f, assignment.lval)
+        f.write(' = ')
+        self.write_expr(f, assignment.expr)
+        f.write(';\n')
+
+    def write_return(self, f, statement):
+        self.write_indent(f)
+        f.write('return ')
+        self.write_expr(f, statement.expr)
+        f.write(';\n')
+
+    def write_print(self, f, statement):
+        self.write_indent(f)
+        f.write('echo(')
+        self.write_expr(f, statement.expr)
+        f.write(')\n')
+
 class CppLang(Lang):
 
     ext = 'cpp'
@@ -590,6 +654,7 @@ p = c.random_program(
     max_statements_per_fun=20)
 
 langs = [
+    NimLang(),
     CppLang(),
     CLang(),
     DLang(),
